@@ -20,25 +20,39 @@ import com.gbm.edu.api.service.EduApiService;
 import com.gbm.edu.util.CamelCaseMap;
 
 @RestController
-@RequestMapping(path="/api/edu")
+@RequestMapping(path="/web")
 public class EduApiRestController {
 
-    @Autowired
-    private EduApiService EduApiService;
-
-    @RequestMapping(value="/edu" , method= {RequestMethod.POST , RequestMethod.GET },headers = {"Accept=application/json"})
-    public ModelAndView getOrderInput() {
-		ModelAndView mv = new ModelAndView();
-		try {
-			CamelCaseMap result = EduApiService.getApi();
-			mv.addObject("params", result);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//mv.addObject("params", params);
-		mv.setViewName("edu/edu");
+	// 게시판 메인페이지
+    @RequestMapping("/")
+	public ModelAndView getMain() {
+    	ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
 		return mv;
-    }
+	}
+    
+    // 글 목록
+  	@RequestMapping("/getBoardList.do")
+  	public ModelAndView getBoardList() {
+  		ModelAndView mv = new ModelAndView();
+		mv.setViewName("boardList");
+		return mv;
+  	}
+  	
+  	// 글 쓰기
+  	@RequestMapping("/moveInsertBoard.do") 
+  	public ModelAndView moveInsertBoard()throws Exception{
+  		ModelAndView mv = new ModelAndView();
+		mv.setViewName("insertBoard");
+		return mv;
+  	}
+  	 
+  	// 글 수정
+  	@RequestMapping("/updateBoard.do")
+  	public ModelAndView updateBoard() {
+  		ModelAndView mv = new ModelAndView();
+		mv.setViewName("updateBoard");
+		return mv;
+  	}
     
 }

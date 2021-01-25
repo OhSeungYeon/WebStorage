@@ -19,7 +19,7 @@ server:
     cookie:
       http-only: true
       secure: false
-  port: 8080
+  port: 8088
   ssl:
     enabled: false
   error:
